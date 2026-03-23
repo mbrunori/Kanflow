@@ -1,16 +1,19 @@
+import { useDroppable } from '@dnd-kit/core'
+import Card from './Card.jsx'
+
 import './Column.css'
-import Card from './Card'
 
 function Column({ data }) {
+    const { setNodeRef } = useDroppable({ id: data.id })
 
     return (
         <div className='column'>
-            <h1>{data.title}</h1>
-            {
-                data.cards.map((card, index) => (
-                    <Card key={index} data={card} />
-                ))
-            }
+            <h2>{data.title}</h2>
+            <div ref={setNodeRef} className='dropZone' style={{ flex: 1, minHeight: '100px' }}>
+                {data.cards.map((card) => (
+                    <Card key={card.id} data={card} />
+                ))}
+            </div>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .card {
-    width: 90%;
+    width: 100%;
     height: 20%;
 
     background-color: azure;
@@ -17,6 +17,10 @@
     justify-content: space-between;
 }
 
+h3 {
+    font-size: 24px;
+}
+
 .cardTop {
     display: flex;
     flex-direction: column;
@@ -24,7 +28,9 @@
 }
 
 .cardTop p {
-    margin: 0;
+    margin-left: 5%;
+    margin-bottom: 0;
+    margin-top: 2%;
 }
 
 .cardDate{

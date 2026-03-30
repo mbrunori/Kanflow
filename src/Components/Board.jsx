@@ -1,7 +1,8 @@
-import { act, useState } from 'react'
+import { useState } from 'react'
 import { DndContext } from '@dnd-kit/core'
 import './Board.css'
 import Column from './Column.jsx'
+import Modal from './Modal.jsx'
 
 const initialData = [
     {
@@ -22,10 +23,36 @@ const initialData = [
     },
 ]
 
-
 function Board() {
-
     const [columns, setColumns] = useState(initialData)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [selectedColumn, setSelectedColumn] = useState(null)
+
+    function openModal(columnId) {
+        setSelectedColumn(columnId)
+        setModalOpen(true)
+    }
+
+    function addCard(columnId, cardData) {
+        setColumns(prev => prev.map(col => {
+            if (col.id === columnId) {
+                const newCard = {
+                    id: Date.now(),
+                    title: cardData.title,
+                    content: cardData.content,
+                    date: new Date().toLocaleDateString()
+                }
+                return { ...col, cards: [...col.cards, newCard] }
+            }
+            return col
+        }))
+    }
+
+    function handleSave(cardData) {
+        if (!cardData.title) return
+        addCard(selectedColumn, cardData)
+        setModalOpen(false)
+    }
 
     function handleDragEnd(event) {
         const { active, over } = event
@@ -35,7 +62,9 @@ function Board() {
         const targetColumnId = over.id
 
         setColumns(prev => {
-            const sourceCol = prev.find(col => col.cards.some(card => card.id === cardId))
+            const sourceCol = prev.find(col =>
+                col.cards.some(card => card.id === cardId)
+            )
             if (!sourceCol || sourceCol.id === targetColumnId) return prev
 
             const card = sourceCol.cards.find(card => card.id === cardId)
@@ -56,9 +85,20 @@ function Board() {
         <DndContext onDragEnd={handleDragEnd}>
             <div className='container'>
                 {columns.map(col => (
-                    <Column key={col.id} data={col} />
+                    <Column
+                        key={col.id}
+                        data={col}
+                        openModal={openModal}
+                    />
                 ))}
             </div>
+
+            {modalOpen && (
+                <Modal
+                    onClose={() => setModalOpen(false)}
+                    onSave={handleSave}
+                />
+            )}
         </DndContext>
     )
 }

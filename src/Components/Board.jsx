@@ -33,6 +33,18 @@ function Board() {
         setModalOpen(true)
     }
 
+    function delCard(columnId, cardId) {
+        setColumns(prev => prev.map(col => {
+            if (col.id === columnId) {
+                return {
+                    ...col,
+                    cards: col.cards.filter(card => card.id !== cardId)
+                }
+            }
+            return col
+        }))
+    }
+
     function addCard(columnId, cardData) {
         setColumns(prev => prev.map(col => {
             if (col.id === columnId) {
@@ -87,8 +99,9 @@ function Board() {
                 {columns.map(col => (
                     <Column
                         key={col.id}
-                        data={col}
+                        column={col}
                         openModal={openModal}
+                        removeCard = {delCard}
                     />
                 ))}
             </div>

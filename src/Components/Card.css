@@ -17,17 +17,24 @@
     justify-content: space-between;
 }
 
+.cardTop {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+
 h3 {
     font-size: 24px;
 }
 
-.cardTop {
+.cardContent {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.cardTop p {
+.cardContent p {
     margin-left: 5%;
     margin-bottom: 0;
     margin-top: 2%;
@@ -36,4 +43,30 @@ h3 {
 .cardDate{
     margin: 4%;
     align-self: flex-end;
+}
+
+.delButton {
+    background-color: rgb(255, 237, 214);
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 28px;
+    align-content: center;
+    padding: 3%;
+    min-width: 25px;
+
+    margin: 5px;
+
+    cursor: pointer;
+}
+
+.grab {
+    cursor: grab;
+    margin: 5%;
+}
+
+.cardTopLeft{
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: space-evenly;
 }

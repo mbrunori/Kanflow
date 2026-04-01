@@ -1,16 +1,28 @@
-# React + Vite
+# KanFlow
+Kanflow is a lightweight app built as a personal learning project. It's inspired by Trello and made in React.
+## Features
+With KanFlow at the moment you can:
+- Add and remove cards. each card has a title, a description and a date.
+- Drag and Drop cards between the colums: Todo, Doing and Done.
+## Roadmap
+- [x] Drag and Drop
+- [ ] Database to handle data
+- [ ] Authentication
+## Installation
+### presequisites
+- Node.js >= 18
+- npm
+### Steps
+```bash
+#clone the repo
+git clone https://github.com/mbrunori/Kanflow.git
+cd Kanflow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#install dependencies
+npm install
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+#start a development server
+npm run dev
+```
+---
+*Another developer reinventing the wheel. Hope is round this time.*
